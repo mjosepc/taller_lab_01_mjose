@@ -59,7 +59,7 @@ public class Main {
                     }
                     break;
                 case 5:
-                    System.out.println("verifique si la matriz es de tipo 0" + matrizCero(matriz));
+                    System.out.println("verifique si la matriz es de tipo 0: " + matrizCero(matriz));
                     break;
 
                 case 6:
@@ -106,7 +106,7 @@ public class Main {
 
         Random random = new Random();
         for(int i = 0; i < matriz.length; i++){
-            for(int j = 0; i < matriz[i].length; j++){
+            for(int j = 0; j < matriz[i].length; j++){
                 matriz[i][j] = random.nextInt(10);
             }
         }
