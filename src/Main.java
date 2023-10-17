@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -34,6 +35,9 @@ public class Main {
                         System.out.println("las dimensiones no son validas");
                     }
                 case 3:
+                    System.out.println("la matriz completa");
+                    matriz = crearmatriz(filas, cols);
+                    llenarMatriz(matriz);
 
             }
 
@@ -64,7 +68,12 @@ public class Main {
             return null;
         }
     }
-    public static int llenarMatriz(){
-
+    public static void llenarMatriz(int matriz[][]){
+        Random random = new Random();
+        for(int i = 0; i < matriz.length; i++){
+            for(int j = 0; i < matriz[i].length; j++){
+                matriz[i][j] = random.nextInt(10);
+            }
+        }
     }
 }
