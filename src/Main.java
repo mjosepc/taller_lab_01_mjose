@@ -6,7 +6,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         int filas, cols;
-        int[][] matriz;
+        int[][] matriz = null;
         int opcion;
         int filamostrar;
 
@@ -32,7 +32,7 @@ public class Main {
                         matriz = crearmatriz(filas, cols);
                         for (int i = 0; i < filas; i++){
                             for(int j = 0; j < cols; j++){
-                                System.out.println(matriz[i][j]);
+                               System.out.println(matriz[i][j]);
                             }
                             System.out.println();
                         }
@@ -41,23 +41,25 @@ public class Main {
                     }
                     break;
                 case 3:
-                    System.out.println("la matriz completa");
-                    matriz = crearmatriz(filas, cols);
-                    llenarMatriz(matriz);
+                    System.out.println("la matriz completada");
+                    if(matriz != null){
+                        llenarMatriz(matriz);
+                        imprimirMatriz(matriz);
+                } else{
+                        System.out.println("Primero debes crear la matriz");
+                    }
                     break;
                 case 4:
                     System.out.println("ingrese el numero de fila que quiere mostrar");
-                    matriz = crearmatriz(filas, cols);
-                    llenarMatriz(matriz);
-                    filamostrar = scanner.nextInt();
-                    mostrarFila(matriz, filamostrar);
+                    if (matriz != null) {
+                        filamostrar = scanner.nextInt();
+                        mostrarFila(matriz, filamostrar);
+                    } else {
+                        System.out.println("Primero debes crear la matriz");
+                    }
                     break;
-
                 case 5:
-                    System.out.println("verifique si la matriz es de tipo 0");
-                    matriz = crearmatriz(filas, cols);
-                    llenarMatriz(matriz);
-                    matrizCero(matriz);
+                    System.out.println("verifique si la matriz es de tipo 0" + matrizCero(matriz));
                     break;
 
                 case 6:
@@ -96,7 +98,12 @@ public class Main {
             return null;
         }
     }
-    public static void llenarMatriz(int matriz[][]){
+    public static void llenarMatriz(int[][] matriz){
+        if (matriz == null) {
+            System.out.println("La matriz es nula.");
+            return;
+        }
+
         Random random = new Random();
         for(int i = 0; i < matriz.length; i++){
             for(int j = 0; i < matriz[i].length; j++){
@@ -105,7 +112,7 @@ public class Main {
         }
     }
     public static void mostrarFila(int matriz[][], int fila){
-        if (fila >=0 && fila < matriz.length){
+        if (fila >=0 && fila < matriz.length) {
             System.out.println("fila " + fila + ":");
             for (int j = 0; j < matriz[fila].length; j++){
                 System.out.println(matriz[fila][j] + " ");
@@ -116,6 +123,10 @@ public class Main {
         }
     }
     public static Boolean matrizCero(int matriz[][]){
+        if (matriz == null) {
+            System.out.println("La matriz es nula.");
+            return false;
+        }
         int toltaElementos = matriz.length * matriz[0].length;
         int cero = 0;
 
@@ -128,5 +139,17 @@ public class Main {
         }
         double porcentaje = (double) cero / toltaElementos * 100;
         return porcentaje > 50;
+    }
+    public static void imprimirMatriz(int[][] matriz) {
+        if (matriz == null) {
+            System.out.println("La matriz es nula.");
+            return;
+        }
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
