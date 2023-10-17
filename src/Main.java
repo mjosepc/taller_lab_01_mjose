@@ -10,17 +10,20 @@ public class Main {
         int opcion;
         int filamostrar;
 
+        System.out.println("ingrese las dimensiones de la matriz MxN");
+        System.out.println("ingrese las dimensiones de M");
+        filas = scanner.nextInt();
+        System.out.println("ingrese las dimensiones de N");
+        cols = scanner.nextInt();
 
         do {
+
             Menu();
-            System.out.println("ingrese las dimensiones de la matriz MxN");
-            filas = scanner.nextInt();
-            cols = scanner.nextInt();
             opcion = scanner.nextInt();
 
             switch (opcion) {
                 case 1:
-                    ValidacionMatriz(filas, cols);
+                    System.out.println("validacion de las dimensiones: "+ ValidacionMatriz(filas, cols));
                     break;
 
                 case 2:
@@ -71,7 +74,7 @@ public class Main {
 
     public static void Menu() {
         System.out.println("Menú:");
-        System.out.println("1. Ingresar dimensiones de la matriz");
+        System.out.println("1. Validacion de las dimensiones");
         System.out.println("2. Crear matriz");
         System.out.println("3. Llenar matriz");
         System.out.println("4. Mostrar fila");
