@@ -8,6 +8,7 @@ public class Main {
         int filas, cols;
         int[][] matriz;
         int opcion;
+        int filamostrar;
 
 
         do {
@@ -20,6 +21,7 @@ public class Main {
             switch (opcion) {
                 case 1:
                     ValidacionMatriz(filas, cols);
+                    break;
 
                 case 2:
                     System.out.println("creacion de la matriz");
@@ -34,11 +36,34 @@ public class Main {
                     }else{
                         System.out.println("las dimensiones no son validas");
                     }
+                    break;
                 case 3:
                     System.out.println("la matriz completa");
                     matriz = crearmatriz(filas, cols);
                     llenarMatriz(matriz);
+                    break;
+                case 4:
+                    System.out.println("ingrese el numero de fila que quiere mostrar");
+                    matriz = crearmatriz(filas, cols);
+                    llenarMatriz(matriz);
+                    filamostrar = scanner.nextInt();
+                    mostrarFila(matriz, filamostrar);
+                    break;
 
+                case 5:
+                    System.out.println("verifique si la matriz es de tipo 0");
+                    matriz = crearmatriz(filas, cols);
+                    llenarMatriz(matriz);
+                    matrizCero(matriz);
+                    break;
+
+                case 6:
+                    System.out.println("saliendo del menu");
+                    break;
+
+                default:
+                    System.out.println("opcion no valida");
+                    break;
             }
 
         } while (opcion != 6);
@@ -75,5 +100,30 @@ public class Main {
                 matriz[i][j] = random.nextInt(10);
             }
         }
+    }
+    public static void mostrarFila(int matriz[][], int fila){
+        if (fila >=0 && fila < matriz.length){
+            System.out.println("fila " + fila + ":");
+            for (int j = 0; j < matriz[fila].length; j++){
+                System.out.println(matriz[fila][j] + " ");
+            }
+            System.out.println();
+        }else {
+            System.out.println("fila no valida");
+        }
+    }
+    public static Boolean matrizCero(int matriz[][]){
+        int toltaElementos = matriz.length * matriz[0].length;
+        int cero = 0;
+
+        for (int i = 0; i < matriz.length; i++){
+            for (int j = 0; j < matriz[i].length; j++){
+                if (matriz[i][j] == 0){
+                    cero++;
+                }
+            }
+        }
+        double porcentaje = (double) cero / toltaElementos * 100;
+        return porcentaje > 50;
     }
 }
